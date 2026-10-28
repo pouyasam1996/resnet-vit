@@ -1,7 +1,7 @@
 [project]
 name = "resnet-vit"
 version = "0.1.0"
-description = "Add your description here"
+description = "ResNet and ViT trained from scratch on Tiny ImageNet: training-recipe ablations, multi-GPU, and TensorRT deployment.” A leftover template line is the first thing a reviewer notices."
 readme = "README.md"
 authors = [
     { name = "pouyasam1996", email = "samandi.pouya@gmail.com" }
@@ -23,3 +23,14 @@ dev = [
     "pytest>=9.2.0",
     "ruff>=0.17.3",
 ]
+[tool.ruff]
+# Target a specific Python version
+# Set line length limits (Default is 88)
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+# Select specific rule sets (E = Pycodestyle, F = Pyflakes, I = Isort)
+select = ["E", "F", "I", "B", "W", "SIM", "NPY", "UP", "RUF"]
+# Ignore specific error codes
+ignore = ["E501"]
