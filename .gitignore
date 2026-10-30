@@ -1,22 +1,44 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
-
-# Other files and folders
-.settings/
-.venv/
-
+# --- Python ---
 __pycache__/
 *.py[cod]
+*.so
+build/
+dist/
+*.egg-info/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# --- Environments ---
+.venv/
+.venv.nosync/
+.env
+.env.*
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# --- Tool caches ---
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.ipynb_checkpoints/
+
+# --- Data (tracked by DVC from Stage 1, never by git) ---
+data/
+
+# --- Run outputs ---
+outputs/
+multirun/
+wandb/
+runs/
+
+# --- Model files ---
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.onnx
+*.engine
+*.plan
+
+# --- OS and editors ---
+.DS_Store
+.idea/
+.vscode/

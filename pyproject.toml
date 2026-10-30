@@ -1,10 +1,10 @@
 [project]
 name = "resnet-vit"
 version = "0.1.0"
-description = "ResNet and ViT trained from scratch on Tiny ImageNet: training-recipe ablations, multi-GPU, and TensorRT deployment.” A leftover template line is the first thing a reviewer notices."
+description = "ResNet and ViT trained from scratch on Tiny ImageNet: training-recipe ablations, multi-GPU, and TensorRT deployment."
 readme = "README.md"
 authors = [
-    { name = "pouyasam1996", email = "samandi.pouya@gmail.com" }
+    { name = "Pouya Samandi", email = "samandi.pouya@gmail.com" }
 ]
 requires-python = ">=3.10"
 dependencies = [
@@ -23,14 +23,20 @@ dev = [
     "pytest>=9.2.0",
     "ruff>=0.17.3",
 ]
+
 [tool.ruff]
-# Target a specific Python version
-# Set line length limits (Default is 88)
 line-length = 100
 src = ["src", "tests"]
 
 [tool.ruff.lint]
-# Select specific rule sets (E = Pycodestyle, F = Pyflakes, I = Isort)
 select = ["E", "F", "I", "B", "W", "SIM", "NPY", "UP", "RUF"]
-# Ignore specific error codes
+# E501: line length is enforced by the formatter
 ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
+markers = [
+    "gpu: needs a CUDA GPU",
+    "slow: takes more than a few seconds",
+]
