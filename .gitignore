@@ -42,3 +42,8 @@ runs/
 .DS_Store
 .idea/
 .vscode/
+
+# pdf and word files
+*.pdf
+*.docx
+*.xlsx
