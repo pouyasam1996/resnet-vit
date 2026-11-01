@@ -1,0 +1,28 @@
+stages:
+  manifest:
+    cmd: >-
+      python scripts/make_manifest.py
+      --val-per-class ${split.val_per_class}
+      --seed ${split.seed}
+    deps:
+      - scripts/make_manifest.py
+      - data/raw/tiny-imagenet-200
+    params:
+      - split
+    outs:
+      - data/manifest.csv
+
+  arrays:
+    cmd: python scripts/build_arrays.py
+    deps:
+      - scripts/build_arrays.py
+      - data/manifest.csv
+      - data/raw/tiny-imagenet-200
+    outs:
+      - data/processed/train_images.npy
+      - data/processed/train_labels.npy
+      - data/processed/val_images.npy
+      - data/processed/val_labels.npy
+      - data/processed/test_images.npy
+      - data/processed/test_labels.npy
+      - data/processed/stats.json

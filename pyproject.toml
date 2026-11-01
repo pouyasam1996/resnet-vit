@@ -10,6 +10,7 @@ requires-python = ">=3.10"
 dependencies = [
     "dvc[s3]>=3.67.1",
     "numpy>=2.2.6",
+    "pillow>=12.3.0",
     "torch>=2.14.1",
     "torchvision>=0.29.2",
 ]
@@ -22,6 +23,7 @@ build-backend = "uv_build"
 dev = [
     "pre-commit>=4.6.2",
     "pytest>=9.2.0",
+    "pyyaml>=6.0.3",
     "ruff>=0.17.3",
 ]
 
@@ -39,5 +41,6 @@ testpaths = ["tests"]
 addopts = "-ra --strict-markers"
 markers = [
     "gpu: needs a CUDA GPU",
+    "data: needs the DVC-tracked data, so it runs on a laptop and not in CI",
     "slow: takes more than a few seconds",
 ]
