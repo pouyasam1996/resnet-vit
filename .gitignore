@@ -20,9 +20,6 @@ dist/
 htmlcov/
 .ipynb_checkpoints/
 
-# --- Data (tracked by DVC from Stage 1, never by git) ---
-data/
-
 # --- Run outputs ---
 outputs/
 multirun/
@@ -42,3 +39,8 @@ runs/
 .DS_Store
 .idea/
 .vscode/
+
+# pdf and word files
+*.pdf
+*.docx
+*.xlsx

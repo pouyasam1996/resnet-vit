@@ -8,7 +8,7 @@ A ResNet and a Vision Transformer (ViT), written from scratch in PyTorch and tra
 
 The project is built the way a production ML team works: pinned environments, automated checks on every change, versioned data, tracked experiments, containerized training and verified deployment.
 
-> **Status:** Stage 0 (repository foundation) is complete. Results will appear here as stages finish.
+> **Status:** Stage 1 (versioned data) is complete. Results will appear here as stages finish.
 
 ## Questions this project answers
 
@@ -22,7 +22,7 @@ The project is built the way a production ML team works: pinned environments, au
 | Stage | Scope | Status |
 | --- | --- | --- |
 | 0 | Repo foundation: uv, ruff, pre-commit, pytest, GitHub Actions CI, protected `main` | Done (`v0.0`) |
-| 1 | Data: Tiny ImageNet splits and preprocessing, versioned with DVC on S3 | Planned |
+| 1 | Data: Tiny ImageNet splits and preprocessing, versioned with DVC on S3 | Done (`v0.1`) |
 | 2 | Models from scratch: ResNet-18 adapted to 64×64 images, small ViT | Planned |
 | 3 | Single-GPU training: Hydra configs, mixed precision, checkpoint/resume, EMA, experiment tracking | Planned |
 | 4 | Multi-GPU training with DDP | Planned |
@@ -62,8 +62,11 @@ uv run pytest                 # runs the tests; GPU tests are skipped without CU
 ```text
 resnet-vit/
 ├── .github/workflows/ci.yml   # CI: lint, format check, tests
+├── data/                      # DVC-tracked dataset; see data/README.md
+├── scripts/                   # data pipeline steps, run through dvc.yaml
 ├── src/resnet_vit/            # the package (models, data, training, deployment as stages land)
-├── tests/                     # pytest; conftest.py skips GPU tests on machines without CUDA
+├── tests/                     # pytest; conftest.py skips GPU and data tests where they can't run
+├── dvc.yaml                   # data pipeline; settings in params.yaml, hashes in dvc.lock
 ├── .pre-commit-config.yaml    # local checks run before every commit
 ├── pyproject.toml             # dependencies and tool settings
 └── uv.lock                    # exact pinned versions

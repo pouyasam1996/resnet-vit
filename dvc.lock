@@ -1,0 +1,69 @@
+schema: '2.0'
+stages:
+  manifest:
+    cmd: python scripts/make_manifest.py --val-per-class 50 --seed 0
+    deps:
+    - path: data/raw/tiny-imagenet-200
+      hash: md5
+      md5: b77cf489c79bf7b1e382cad937a1a18f.dir
+      size: 239648330
+      nfiles: 120203
+    - path: scripts/make_manifest.py
+      hash: md5
+      md5: cac11d3c20bf215ad14db7aa1824c4e2
+      size: 2359
+    params:
+      params.yaml:
+        split:
+          val_per_class: 50
+          seed: 0
+    outs:
+    - path: data/manifest.csv
+      hash: md5
+      md5: 7af919c119c7e50b86ea67dc1eeeb7b2
+      size: 10973311
+  arrays:
+    cmd: python scripts/build_arrays.py
+    deps:
+    - path: data/manifest.csv
+      hash: md5
+      md5: 7af919c119c7e50b86ea67dc1eeeb7b2
+      size: 10973311
+    - path: data/raw/tiny-imagenet-200
+      hash: md5
+      md5: b77cf489c79bf7b1e382cad937a1a18f.dir
+      size: 239648330
+      nfiles: 120203
+    - path: scripts/build_arrays.py
+      hash: md5
+      md5: e3ec8572383574780be6bd0ab83bee78
+      size: 2492
+    outs:
+    - path: data/processed/stats.json
+      hash: md5
+      md5: d1f08937181a3bf823ad2a3cc1cfd66d
+      size: 181
+    - path: data/processed/test_images.npy
+      hash: md5
+      md5: d906fcf21ccad453316f0c73736011f5
+      size: 122880128
+    - path: data/processed/test_labels.npy
+      hash: md5
+      md5: 0d3cbf76d17579317095dd2100a12b3d
+      size: 80128
+    - path: data/processed/train_images.npy
+      hash: md5
+      md5: 598cce94d96e6d8a551d730461f7c963
+      size: 1105920128
+    - path: data/processed/train_labels.npy
+      hash: md5
+      md5: 79ed1c39ba0d1ab0b5c2a9f6bcb0ac92
+      size: 720128
+    - path: data/processed/val_images.npy
+      hash: md5
+      md5: 86434c99563ab262423b462751e30f2a
+      size: 122880128
+    - path: data/processed/val_labels.npy
+      hash: md5
+      md5: 19259aedcf129c53e50ff7fdb2079111
+      size: 80128
